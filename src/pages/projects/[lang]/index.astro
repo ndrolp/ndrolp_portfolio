@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import '../../../styles/global.css';
+import '../../../styles/projects.css';
+
+export async function getStaticPaths() {
+	return ['es', 'en'].map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang === 'en' ? 'en' : 'es';
+const projects = await getCollection('projects', ({ data }) => data.language === lang);
+const copy = {
+	es: {
+		back: 'Inicio',
+		eyebrow: 'Proyectos seleccionados',
+		title: 'Ideas llevadas a',
+		emphasis: 'producción.',
+		read: 'Ver proyecto',
+		privacy: 'Privacidad',
+		empty: 'Próximamente habrá nuevos proyectos aquí.',
+		switch: 'English',
+	},
+	en: {
+		back: 'Home',
+		eyebrow: 'Selected projects',
+		title: 'Ideas brought to',
+		emphasis: 'production.',
+		read: 'View project',
+		privacy: 'Privacy',
+		empty: 'New projects will appear here soon.',
+		switch: 'Español',
+	},
+}[lang];
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#1e1e2e" />
+		<meta name="description" content={copy.eyebrow} />
+		<title>{copy.eyebrow} — Alejandro Lozano</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<main class="projects-page">
+			<nav class="projects-nav" aria-label="Navigation">
+				<a class="wordmark" href="/">AL<span>.</span></a>
+				<div>
+					<a class="nav-back" href="/">{copy.back}</a>
+					<a class="language-toggle" href={`/projects/${lang === 'es' ? 'en' : 'es'}`}>{copy.switch}</a>
+				</div>
+			</nav>
+			<header class="projects-heading">
+				<p class="eyebrow"><span></span>{copy.eyebrow}</p>
+				<h1>{copy.title}<br /><em>{copy.emphasis}</em></h1>
+			</header>
+			<section class="project-list" aria-label={copy.eyebrow}>
+				{projects.length ? projects.map((project, index) => (
+					<article class="project-card">
+						<p class="project-number">0{index + 1}</p>
+						<div>
+							<p class="project-year">{project.data.date}</p>
+							<h2>{project.data.title}</h2>
+							<p class="project-summary">{project.data.summary}</p>
+							<ul class="project-stack">
+								{project.data.stack.map((technology) => <li>{technology}</li>)}
+							</ul>
+						</div>
+						<div class="project-links">
+							<a class="project-link" href={`/projects/${lang}/${project.data.path}`}>{copy.read} <span>↗</span></a>
+							{project.data.privacyPolicy && <a class="project-link privacy-card-link" href={`/privacy/${project.data.path}/${lang}`}>{copy.privacy} <span>↗</span></a>}
+						</div>
+					</article>
+				)) : <p>{copy.empty}</p>}
+			</section>
+		</main>
+	</body>
+</html>

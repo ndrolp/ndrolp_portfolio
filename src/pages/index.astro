@@ -1,0 +1,281 @@
+---
+import '../styles/global.css';
+import experiences from '../data/experience.json';
+
+const skills = [
+	'React',
+	'TypeScript',
+	'JavaScript',
+	'Node.js',
+	'Django',
+	'Python',
+	'Kotlin',
+	'Vue.js',
+	'Docker',
+	'MySQL',
+	'PostgreSQL',
+	'MongoDB',
+	'SQLite',
+	'PL/SQL',
+];
+
+const experienceTranslation = (language: 'es' | 'en') => ({
+	periods: experiences.map((experience) => experience[language].period),
+	roles: experiences.map((experience) => experience[language].role),
+	locations: experiences.map((experience) => experience[language].location),
+	items: experiences.map((experience) => experience[language].items),
+});
+
+const translations = {
+	es: {
+		metaTitle: 'Alejandro Lozano — Full Stack Developer',
+		nav: { projects: 'Proyectos', experience: 'Experiencia', stack: 'Stack', contact: 'Contacto' },
+		hero: {
+			availability: 'Disponible para nuevos retos',
+			title: 'Construyo productos digitales',
+			emphasis: 'que funcionan.',
+			intro: 'Soy Alejandro, desarrollador Full Stack en Ourense. Convierto ideas complejas en experiencias web y móviles robustas, claras y escalables.',
+			cta: 'Ver trayectoria',
+			role: 'Full Stack Developer',
+			location: 'Ourense, Galicia',
+			status: 'build correcto',
+		},
+		profile: {
+			label: '01 / Perfil',
+			title: 'Desde APIs y bases de datos hasta interfaces que se sienten',
+			emphasis: 'naturales.',
+			body: 'Trabajo de extremo a extremo para entregar soluciones útiles y mantenibles. Me muevo con comodidad entre el backend, el frontend, los contenedores y el desarrollo móvil nativo.',
+		},
+		experience: {
+			label: '02 / Experiencia',
+			title: 'Lo que he estado',
+			emphasis: 'construyendo.',
+			...experienceTranslation('es'),
+		},
+		stack: { label: '03 / Stack', title: 'Herramientas para', emphasis: 'dar forma', suffix: 'a las ideas.' },
+		details: {
+			label: '04 / Más allá del código',
+			languages: 'Idiomas',
+			spanish: 'Español',
+			native: 'Nativo',
+			english: 'Inglés',
+			advanced: 'Avanzado',
+			focus: 'Enfoque',
+			description: 'Aplicaciones web, servicios REST, integración de sistemas y desarrollo móvil.',
+		},
+		contact: { label: '05 / Contacto', title: '¿Tienes algo en', emphasis: 'mente?', note: 'Actualmente en Ourense, Galicia · Abierto a colaborar' },
+		footer: { top: 'Volver arriba ↑' },
+		toggle: 'Cambiar a inglés',
+	},
+	en: {
+		metaTitle: 'Alejandro Lozano — Full Stack Developer',
+		nav: { projects: 'Projects', experience: 'Experience', stack: 'Stack', contact: 'Contact' },
+		hero: {
+			availability: 'Available for new opportunities',
+			title: 'I build digital products',
+			emphasis: 'that work.',
+			intro: 'I am Alejandro, a Full Stack Developer based in Ourense. I turn complex ideas into robust, clear, and scalable web and mobile experiences.',
+			cta: 'View experience',
+			role: 'Full Stack Developer',
+			location: 'Ourense, Galicia',
+			status: 'build successful',
+		},
+		profile: {
+			label: '01 / Profile',
+			title: 'From APIs and databases to interfaces that feel',
+			emphasis: 'natural.',
+			body: 'I work end to end to deliver useful, maintainable solutions. I am equally comfortable across backend and frontend development, containers, and native mobile apps.',
+		},
+		experience: {
+			label: '02 / Experience',
+			title: 'What I have been',
+			emphasis: 'building.',
+			...experienceTranslation('en'),
+		},
+		stack: { label: '03 / Stack', title: 'Tools to', emphasis: 'shape', suffix: 'ideas.' },
+		details: {
+			label: '04 / Beyond code',
+			languages: 'Languages',
+			spanish: 'Spanish',
+			native: 'Native',
+			english: 'English',
+			advanced: 'Advanced',
+			focus: 'Focus',
+			description: 'Web applications, REST services, systems integration, and mobile development.',
+		},
+		contact: { label: '05 / Contact', title: 'Have something in', emphasis: 'mind?', note: 'Based in Ourense, Galicia · Open to collaborate' },
+		footer: { top: 'Back to top ↑' },
+		toggle: 'Switch to Spanish',
+	},
+} as const;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="Portfolio de Alejandro Lozano, Full Stack Developer especializado en productos web, APIs y aplicaciones móviles."
+		/>
+		<meta name="theme-color" content="#1e1e2e" />
+		<title>Alejandro Lozano — Full Stack Developer</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<main>
+			<section class="hero" id="inicio">
+				<nav aria-label="Navegación principal">
+					<a class="wordmark" href="#inicio" aria-label="Inicio">AL<span>.</span></a>
+					<div class="nav-links">
+						<a href="/projects/es" data-localized-projects-link data-i18n="nav.projects">Proyectos</a>
+						<a href="#experiencia" data-i18n="nav.experience">Experiencia</a>
+						<a href="#habilidades" data-i18n="nav.stack">Stack</a>
+						<a href="#contacto" data-i18n="nav.contact">Contacto</a>
+						<button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar a inglés">EN</button>
+					</div>
+				</nav>
+
+				<div class="hero-content">
+					<div class="hero-copy">
+						<p class="eyebrow"><span></span> <span data-i18n="hero.availability">Disponible para nuevos retos</span></p>
+						<h1><span data-i18n="hero.title">Construyo productos digitales</span> <em data-i18n="hero.emphasis">que funcionan.</em></h1>
+						<div class="hero-bottom">
+							<p class="intro">
+								<span data-i18n="hero.intro">Soy Alejandro, desarrollador Full Stack en Ourense. Convierto ideas complejas en experiencias web y móviles robustas, claras y escalables.</span>
+							</p>
+							<a class="round-link" href="#experiencia">
+								<span data-i18n="hero.cta">Ver trayectoria</span>
+								<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m0 0 6-6m-6 6-6-6" /></svg>
+							</a>
+						</div>
+					</div>
+					<div class="hero-terminal" aria-hidden="true">
+						<div class="terminal-bar"><span></span><span></span><span></span><p>alejandro.ts</p></div>
+						<pre><code><i>const</i> developer = &#123;
+  name: <b>'Alejandro'</b>,
+  focus: [<b>'web'</b>, <b>'mobile'</b>],
+  status: <strong>'available'</strong>
+&#125;;</code></pre>
+						<div class="terminal-status"><span>● <span data-i18n="hero.status">build correcto</span></span><span data-language-indicator>ES</span></div>
+					</div>
+				</div>
+
+				<div class="hero-footer">
+					<span data-i18n="hero.role">Full Stack Developer</span>
+					<span data-i18n="hero.location">Ourense, Galicia</span>
+					<span>2025</span>
+				</div>
+			</section>
+
+			<section class="statement section-padding">
+				<p class="section-label" data-i18n="profile.label">01 / Perfil</p>
+				<div>
+					<p class="statement-text">
+						<span data-i18n="profile.title">Desde APIs y bases de datos hasta interfaces que se sienten</span> <em data-i18n="profile.emphasis">naturales.</em>
+					</p>
+					<p class="body-copy">
+						<span data-i18n="profile.body">Trabajo de extremo a extremo para entregar soluciones útiles y mantenibles. Me muevo con comodidad entre el backend, el frontend, los contenedores y el desarrollo móvil nativo.</span>
+					</p>
+				</div>
+			</section>
+
+			<section class="experience section-padding" id="experiencia">
+				<div class="section-heading">
+					<p class="section-label" data-i18n="experience.label">02 / Experiencia</p>
+					<h2><span data-i18n="experience.title">Lo que he estado</span><br /><em data-i18n="experience.emphasis">construyendo.</em></h2>
+				</div>
+				<div class="experience-list">
+					{experiences.map((experience, index) => (
+						<article class="experience-item">
+							<div class="experience-number">0{index + 1}</div>
+							<div class="experience-main">
+								<p class="period" data-i18n={`experience.periods.${index}`}>{experience.es.period}</p>
+								<h3>{experience.company}</h3>
+								<p class="role"><span data-i18n={`experience.roles.${index}`}>{experience.es.role}</span> <span>·</span> <span data-i18n={`experience.locations.${index}`}>{experience.es.location}</span></p>
+								<ul>
+									{experience.es.items.map((item, itemIndex) => <li data-i18n={`experience.items.${index}.${itemIndex}`}>{item}</li>)}
+								</ul>
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="skills" id="habilidades">
+				<div class="skills-intro">
+					<p class="section-label" data-i18n="stack.label">03 / Stack</p>
+					<h2><span data-i18n="stack.title">Herramientas para</span><br /><em data-i18n="stack.emphasis">dar forma</em> <span data-i18n="stack.suffix">a las ideas.</span></h2>
+				</div>
+				<div class="skill-cloud" aria-label="Tecnologías">
+					{skills.map((skill) => <span>{skill}</span>)}
+				</div>
+			</section>
+
+			<section class="details section-padding">
+				<p class="section-label" data-i18n="details.label">04 / Más allá del código</p>
+				<div class="details-grid">
+					<div>
+						<p class="detail-kicker" data-i18n="details.languages">Idiomas</p>
+						<p class="detail-value"><span data-i18n="details.spanish">Español</span> <span data-i18n="details.native">Nativo</span></p>
+						<p class="detail-value"><span data-i18n="details.english">Inglés</span> <span data-i18n="details.advanced">Avanzado</span></p>
+					</div>
+					<div>
+						<p class="detail-kicker" data-i18n="details.focus">Enfoque</p>
+						<p class="detail-description">
+							<span data-i18n="details.description">Aplicaciones web, servicios REST, integración de sistemas y desarrollo móvil.</span>
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="contact" id="contacto">
+				<p class="section-label" data-i18n="contact.label">05 / Contacto</p>
+				<h2><span data-i18n="contact.title">¿Tienes algo en</span><br /><em data-i18n="contact.emphasis">mente?</em></h2>
+				<a class="email-link" href="mailto:ndro.lozano@gmail.com">ndro.lozano@gmail.com <span>↗</span></a>
+				<p class="contact-note" data-i18n="contact.note">Actualmente en Ourense, Galicia · Abierto a colaborar</p>
+			</section>
+		</main>
+		<footer>
+			<span>© {new Date().getFullYear()} Alejandro Lozano</span>
+			<a href="#inicio" data-i18n="footer.top">Volver arriba ↑</a>
+		</footer>
+		<script define:vars={{ translations }}>
+			const getTranslation = (language, path) =>
+				path.split('.').reduce((value, key) => value?.[key], translations[language]);
+
+			const languageToggle = document.querySelector('[data-language-toggle]');
+			const languageIndicator = document.querySelector('[data-language-indicator]');
+			const projectsLink = document.querySelector('[data-localized-projects-link]');
+
+			const setLanguage = (language) => {
+				document.documentElement.lang = language;
+				document.title = translations[language].metaTitle;
+
+				document.querySelectorAll('[data-i18n]').forEach((element) => {
+					const translation = getTranslation(language, element.dataset.i18n);
+					if (typeof translation === 'string') element.textContent = translation;
+				});
+
+				const alternateLanguage = language === 'es' ? 'en' : 'es';
+				languageToggle.textContent = alternateLanguage.toUpperCase();
+				languageToggle.setAttribute('aria-label', translations[language].toggle);
+				languageIndicator.textContent = language.toUpperCase();
+				projectsLink.setAttribute('href', `/projects/${language}`);
+				localStorage.setItem('portfolio-language', language);
+			};
+
+			const savedLanguage = localStorage.getItem('portfolio-language');
+			setLanguage(savedLanguage === 'en' ? 'en' : 'es');
+			languageToggle.addEventListener('click', () => {
+				setLanguage(document.documentElement.lang === 'es' ? 'en' : 'es');
+			});
+		</script>
+	</body>
+</html>

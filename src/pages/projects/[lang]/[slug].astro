@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import '../../../styles/global.css';
+import '../../../styles/projects.css';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	return projects.map((project) => ({
+		params: { lang: project.data.language, slug: project.data.path },
+		props: { project },
+	}));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const lang = project.data.language;
+const copy = lang === 'es'
+	? { allProjects: 'Todos los proyectos', label: 'Proyecto', privacy: 'Política de privacidad' }
+	: { allProjects: 'All projects', label: 'Project', privacy: 'Privacy policy' };
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#1e1e2e" />
+		<meta name="description" content={project.data.summary} />
+		<title>{project.data.title} — Alejandro Lozano</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<main class="projects-page project-detail">
+			<nav class="projects-nav" aria-label="Navigation">
+				<a class="wordmark" href="/">AL<span>.</span></a>
+				<a class="nav-back" href={`/projects/${lang}`}>← {copy.allProjects}</a>
+			</nav>
+			<article>
+				<header class="project-detail-header">
+					<p class="eyebrow"><span></span>{copy.label} / {project.data.date}</p>
+					<h1>{project.data.title}</h1>
+					<p>{project.data.summary}</p>
+					<ul class="project-stack">
+						{project.data.stack.map((technology) => <li>{technology}</li>)}
+					</ul>
+					{project.data.privacyPolicy && <a class="privacy-link" href={`/privacy/${project.data.path}/${lang}`}>{copy.privacy} ↗</a>}
+				</header>
+				<div class="markdown-content"><Content /></div>
+			</article>
+		</main>
+	</body>
+</html>

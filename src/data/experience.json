@@ -1,0 +1,75 @@
+[
+	{
+		"company": "EDISA",
+		"es": {
+			"period": "Enero 2022 — Actualidad",
+			"role": "Desarrollador Full Stack",
+			"location": "Ourense, España",
+			"items": [
+				"Desarrollo e implementación de APIs REST con Django, Python y MySQL.",
+				"Desarrollo y mantenimiento de aplicaciones web con React y JavaScript.",
+				"Creación de una aplicación Android offline con Kotlin y SQLite.",
+				"Gestión y despliegue de contenedores Docker, además de paquetes para bases de datos PL/SQL."
+			]
+		},
+		"en": {
+			"period": "January 2022 — Present",
+			"role": "Full Stack Developer",
+			"location": "Ourense, Spain",
+			"items": [
+				"Built and implemented REST APIs with Django, Python, and MySQL.",
+				"Built and maintained web applications with React and JavaScript.",
+				"Created an offline Android application with Kotlin and SQLite.",
+				"Managed and deployed Docker containers, as well as PL/SQL database packages."
+			]
+		}
+	},
+	{
+		"company": "Comercio MERCAZONA",
+		"es": {
+			"period": "Marzo 2020 — Agosto 2022",
+			"role": "Desarrollador Full Stack",
+			"location": "Las Tunas, Cuba",
+			"items": [
+				"Implementación de APIs REST con Node.js, TypeScript, Express y MongoDB.",
+				"Documentación de APIs con Swagger y desarrollo de sistemas de notificaciones con WebSocket y Telegram.",
+				"Desarrollo de aplicaciones web con React y Vue, y aplicaciones nativas Android con Kotlin.",
+				"Desarrollo de aplicaciones móviles multiplataforma con Flutter."
+			]
+		},
+		"en": {
+			"period": "March 2020 — August 2022",
+			"role": "Full Stack Developer",
+			"location": "Las Tunas, Cuba",
+			"items": [
+				"Implemented REST APIs with Node.js, TypeScript, Express, and MongoDB.",
+				"Documented APIs with Swagger and developed notification systems using WebSocket and Telegram.",
+				"Built web applications with React and Vue, plus native Android applications with Kotlin.",
+				"Built cross-platform mobile applications with Flutter."
+			]
+		}
+	},
+	{
+		"company": "DESOFT",
+		"es": {
+			"period": "Enero 2020 — Marzo 2020",
+			"role": "Desarrollador Full Stack",
+			"location": "Las Tunas, Cuba",
+			"items": [
+				"Desarrollo de APIs REST con Node.js, TypeScript, Express y PostgreSQL.",
+				"Gestión de transmisión de datos mediante una aplicación XML-RPC.",
+				"Desarrollo de aplicaciones Android nativas con Kotlin y aplicaciones web con React."
+			]
+		},
+		"en": {
+			"period": "January 2020 — March 2020",
+			"role": "Full Stack Developer",
+			"location": "Las Tunas, Cuba",
+			"items": [
+				"Built REST APIs with Node.js, TypeScript, Express, and PostgreSQL.",
+				"Managed data transfers through an XML-RPC application.",
+				"Built native Android applications with Kotlin and web applications with React."
+			]
+		}
+	}
+]

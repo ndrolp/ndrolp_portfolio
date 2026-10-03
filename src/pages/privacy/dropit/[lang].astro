@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import '../../../styles/global.css';
+import '../../../styles/projects.css';
+
+export async function getStaticPaths() {
+	const policies = await getCollection('privacyPolicies', ({ data }) => data.appName === 'DropIt');
+	return policies.map((policy) => ({
+		params: { lang: policy.data.language },
+		props: { policy },
+	}));
+}
+
+const { policy } = Astro.props;
+const { Content } = await render(policy);
+const lang = policy.data.language;
+const copy = lang === 'es'
+	? { home: 'Inicio', project: 'Proyecto DropIt', updated: 'En vigor desde' }
+	: { home: 'Home', project: 'DropIt project', updated: 'Effective from' };
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#1e1e2e" />
+		<meta name="description" content={policy.data.description} />
+		<title>{policy.data.title} — DropIt</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<main class="projects-page project-detail">
+			<nav class="projects-nav" aria-label="Navigation">
+				<a class="wordmark" href="/">AL<span>.</span></a>
+				<div>
+					<a class="nav-back" href={`/projects/${lang}/dropit`}>← {copy.project}</a>
+					<a class="language-toggle" href={`/privacy/dropit/${lang === 'es' ? 'en' : 'es'}`}>{lang === 'es' ? 'English' : 'Español'}</a>
+				</div>
+			</nav>
+			<article>
+				<header class="project-detail-header">
+					<p class="eyebrow"><span></span>DropIt</p>
+					<h1>{policy.data.title}</h1>
+					<p>{policy.data.description}</p>
+					<p class="policy-date">{copy.updated}: {policy.data.effectiveDate}</p>
+				</header>
+				<div class="markdown-content"><Content /></div>
+			</article>
+		</main>
+	</body>
+</html>
